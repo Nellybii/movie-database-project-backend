@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from schemas import MovieSchema
 
 app = FastAPI()
 
@@ -11,7 +12,7 @@ def movie():
     return{}
 
 @app.post('/movies')
-def create():
+def create_movie(movie: MovieSchema):
     return{"message":"movie database created sucessfully"}
 
 @app.patch('/movies/{movie_id}')
