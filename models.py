@@ -1,5 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Text, Integer, VARCHAR, DateTime
+from sqlalchemy import Column, Text, Integer, VARCHAR, DateTime, ForeignKey
+from sqlalchemy.orm import relationship, backref
 Base = declarative_base()
 
 class Movie(Base):
@@ -12,3 +13,28 @@ class Movie(Base):
     description = Column(Text(), nullable=False)
     runtime = Column(VARCHAR(), nullable=False)
     production_date = Column(DateTime(), nullable=False)
+
+    reviews = relationship("Review", backref="movie")
+
+
+
+
+class User(Base):
+    __tablename__ ="users"
+
+    id = Column(Integer(), primary_key=True)
+    first_name = Column(Text(), nullable=False)
+    last_name = Column(Text(), nullable=False)
+    Phone = Column(VARCHAR(), nullable=False)
+    nationality=Column(Text(), nullable=False)
+    
+class Review(Base):
+    __tablename__ = "reviews"
+
+    id = Column(Integer(), primary_key=True)
+    text = Column(Text(), nullable=False)
+    rating= Column(Integer(), nullable=False)
+    movie_id=Column(Integer(), ForeignKey('movies.id'))
+    user_id=Column(Integer(), ForeignKey('users.id'))
+    
+    reviews = relationship("Review", backref="user")
