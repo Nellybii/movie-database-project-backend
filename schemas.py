@@ -10,7 +10,14 @@ class MovieSchema(BaseModel):
 
 class UserSchema(BaseModel):
     first_name: str
-    second_name: str
+    last_name: str
     phone: str
     nationality: str
+    
+class ReviewSchema(BaseModel):
+    reviews_text: str
+    rating: int
+    movie_id: int
+    user_id: int
+
     

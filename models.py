@@ -27,14 +27,17 @@ class User(Base):
     last_name = Column(Text(), nullable=False)
     Phone = Column(VARCHAR(), nullable=False)
     nationality=Column(Text(), nullable=False)
+
+    reviews = relationship("Review", backref="user")
     
 class Review(Base):
     __tablename__ = "reviews"
 
     id = Column(Integer(), primary_key=True)
-    text = Column(Text(), nullable=False)
+    reviews_text = Column(Text(), nullable=False)
     rating= Column(Integer(), nullable=False)
     movie_id=Column(Integer(), ForeignKey('movies.id'))
     user_id=Column(Integer(), ForeignKey('users.id'))
     
-    reviews = relationship("Review", backref="user")
+    # movie = relationship("Movie", backref=backref("reviews"))
+    # user = relationship("User", backref=backref("reviews"))
