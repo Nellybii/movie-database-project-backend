@@ -39,5 +39,4 @@ class Review(Base):
     movie_id=Column(Integer(), ForeignKey('movies.id'))
     user_id=Column(Integer(), ForeignKey('users.id'))
     
-    # movie = relationship("Movie", backref=backref("reviews"))
-    # user = relationship("User", backref=backref("reviews"))
+    
